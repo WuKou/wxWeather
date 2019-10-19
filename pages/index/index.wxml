@@ -1,0 +1,58 @@
+<view class="outer-container">
+  <view class="navbar">
+    <!-- <view class="city">{{city_weather.basic.location}}
+        <image class="city-icon" src="/img/location.png"></image>
+      </view> -->
+    <image class="setting-icon" src="/img/setting.png" catchtap="toManageCities"></image>
+  </view>
+  <swiper class="outer-swiper" style="height:100vh" current="{{currentSwiper}}" bindchange="swiperChange">
+    <block wx:for="{{cities_saved}}" wx:key="{{index}}">
+      <swiper-item wx:if="{{item.air}}" class="swiper-item">
+        <scroll-view scroll-y="true" class="scroll-view">
+          <image class="bg" src="/img/sun.png" mode="aspectFill"></image>
+          <view class="topView">
+            <view class="weather-msg">
+              <text class="temperature-now">{{item.weather.now.tmp}}℃</text>
+              <text class="cond_txt">{{item.weather.now.cond_txt}}</text>
+              <text class="air-quality">空气{{item.air.air_now_city.qlty}}</text>
+            </view>
+            <view class="city">{{item.weather.basic.location}}
+              <image class="city-icon" wx:if="{{currentLocation===item.weather.basic.location}}" src="/img/location.png"></image>
+            </view>
+          </view>
+          <text class="update-time">{{item.time}} 更新</text>
+          <scroll-view scroll-x="true" class="hourly-scroll">
+            <view class="hourly-weather">
+              <block wx:for="{{item.weather.hourly}}" wx:key="{{index}}">
+                <view class="hourly-item">
+                  <view class="time">{{item.time}}</view>
+                  <image class="weather-img" src="https://cdn.heweather.com/cond_icon/{{item.cond_code}}.png" mode="widthFit"></image>
+                  <view class="tmp">{{item.tmp}}℃</view>
+                </view>
+              </block>
+            </view>
+          </scroll-view>
+          <view class="daily-forecast">
+            <view class="daily-forecast-item header">未来{{item.weather.daily_forecast.length}}天天气预报</view>
+            <view class="daily-forecast-item" wx:for="{{item.weather.daily_forecast}}" wx:key="{{index}}">
+              <view class="date">{{item.date}}{{item.week}}</view>
+              <image class="weather-img" src="https://cdn.heweather.com/cond_icon/{{item.cond_code_d}}.png" mode="widthFit"></image>
+              <view class="tmp">{{item.tmp_min}}℃/{{item.tmp_max}}℃</view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item wx:else class="fail-swiper-item">
+        <view class="city">{{item.weather.basic.location}}
+          <image class="city-icon" src="/img/location.png"></image>
+        </view>
+        <view class="text">未更新</view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="dots">
+    <block wx:for="{{cities_saved}}" wx:key="{{index}}">
+      <view class="dot {{index==currentSwiper?'active':''}}"></view>
+    </block>
+  </view>
+</view>

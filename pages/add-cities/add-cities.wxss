@@ -1,0 +1,56 @@
+page{
+  color: #666;
+  font-size: 32rpx;
+}
+.fixed-box{
+  width: 100%;
+  background-color: #FFF;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.search{
+  display: flex;
+  align-items: center;
+  margin: 30rpx 30rpx 15rpx;
+  padding: 15rpx 25rpx;
+  background-color: #f4f6f9;
+  border-radius: 15rpx;
+}
+.search .search-img{
+  width: 32rpx;
+  height: 32rpx;
+}
+.search .search-input{
+  padding:0 30rpx;
+  width: 80%;
+}
+.header{
+  background-color: #f4f6f9;
+  color: #666;
+  padding: 15rpx 30rpx;
+  font-size: 30rpx;
+}
+.cities{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  border-top: 1rpx solid #f4f6f9;
+  border-bottom: 1rpx solid #f4f6f9;
+  margin-top: 184rpx;
+}
+.cities .city{
+  text-align: center;
+  padding: 25rpx;
+  border: 1rpx solid #f4f6f9;
+  border-left: none;
+  border-top: none;
+}
+.cities .city_choosed{
+  color: rgb(172, 172, 172);
+}
+.cities .city:nth-child(3n){
+  border-right: none;
+}
+.cities .city:nth-last-of-type(1),.cities .city:nth-last-of-type(2){
+  border-bottom: none;
+}

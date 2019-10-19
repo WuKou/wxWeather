@@ -1,0 +1,17 @@
+<view>
+<view class="fixed-box">
+  <view class="search">
+    <image class="search-img" src="/img/search_grey.png"></image>
+    <input class="search-input" placeholder="搜索城市" bindfocus="toSearchPage"></input>
+    <image class="search-img" src="/img/xx.png"></image>
+  </view>
+   <view class="header">推荐城市</view>
+</view>
+    <view class="cities">
+    <block wx:for="{{recommend_cities}}" wx:key="{{index}}">
+    <view wx:if="{{!item.storaged}}" class="city" catchtap="toShowWeather" data-index="{{index}}" data-city="{{item.location}}">
+      {{item.location}}</view>
+      <view wx:else="{{item.storaged}}" class="city city_choosed"> {{item.location}}</view>
+    </block>
+    </view>
+</view>

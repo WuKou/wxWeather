@@ -1,0 +1,19 @@
+<view>
+  <view class="fixed-box">
+    <view class="search">
+      <image class="search-img" src="/img/search_grey.png"></image>
+      <input class="search-input" value="{{inputText}}" placeholder="搜索城市" bindinput="getSearchResult" bindconfirm="getSearchResult" bindfocus="showSearchPanel"></input>
+      <image wx:if="{{showClose}}" class="search-img" src="/img/xx.png" catchtap="clear"></image>
+    </view>
+    <view class="header" wx:if="{{showSearchPanel}}">全部城市</view>
+  </view>
+  <view class="cities" wx:if="{{showSearchPanel}}">
+    <scroll-view scroll-y>
+    <block wx:for="{{search_result}}">
+      <view class="city" catchtap="toWeatherPage" data-city="{{item.location}}">
+        {{item.location}}
+      </view>  
+    </block>
+ </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,29 @@
+<view>
+  <view class="cities">
+    <scroll-view scroll-y style="height:100%">
+      <block wx:for="{{cities_saved}}" wx:key="{{key}}">
+        <mp-cells>
+          <mp-slideview ext-class="city-box" buttons="{{slideButtons}}" icon="true" bindbuttontap="deleteCity" data-index="{{index}}">
+            <mp-cell ext-class="city">
+              <view class="name">{{item.weather.basic.location}}
+                <image class="location-img" 
+                wx:if="{{currentLocation===item.weather.basic.location}}" src="/img/location.png"></image>
+              </view>
+              <view class="weather" wx:if="{{item.air}}">
+                <view class="tmp">{{item.weather.now.tmp}}℃</view>
+                <view class="text">{{item.weather.now.cond_txt}}</view>
+              </view>
+              <view class="weather noUpdate" wx:else>
+              未更新
+              </view>
+            </mp-cell>
+          </mp-slideview>
+        </mp-cells>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="add">
+    <image class="add-img" src="/img/add.png" catchtap="toAddCities"></image>
+    <text class="text" catchtap="toAddCities">添加城市</text>
+  </view>
+</view>
