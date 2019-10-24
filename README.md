@@ -1,2 +1,11 @@
-# wxWeather
-天气预报微信小程序
+#数据来源
+1.气象数据来源于“和风天气”https://www.heweather.com/
+  我使用的是付费api，和风天气同时也提供免费api，供自己需要选择
+2.逆地址编码api来源于腾讯位置服务https://lbs.qq.com/index.html
+#运行前准备
+1.注册微信小程序，获取appid
+2.注册和风天气账号，创建应用，获取和风天气的‘key’
+3.注册腾讯定位服务，创建应用，获取腾讯定位服务的‘key’
+4.在app.js中替换globalData中的ak为腾讯定位服务的key
+5.在app.js中替换globalData中的key为和风天气的key
+6.Run
