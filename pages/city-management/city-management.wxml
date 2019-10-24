@@ -3,11 +3,11 @@
     <scroll-view scroll-y style="height:100%">
       <block wx:for="{{cities_saved}}" wx:key="{{key}}">
         <mp-cells>
-          <mp-slideview ext-class="city-box" buttons="{{slideButtons}}" icon="true" bindbuttontap="deleteCity" data-index="{{index}}">
+          <mp-slideview ext-class="city-box" buttons="{{slideButtons}}" icon="true" bindbuttontap="processDeleteCity" data-index="{{index}}">
             <mp-cell ext-class="city">
               <view class="name">{{item.weather.basic.location}}
                 <image class="location-img" 
-                wx:if="{{currentLocation===item.weather.basic.location}}" src="/img/location.png"></image>
+                wx:if="{{currentLocation===item.weather.basic.location||'当前位置'===item.weather.basic.location}}" src="/img/location.png"></image>
               </view>
               <view class="weather" wx:if="{{item.air}}">
                 <view class="tmp">{{item.weather.now.tmp}}℃</view>

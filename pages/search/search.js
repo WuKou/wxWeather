@@ -21,8 +21,13 @@ Page({
     let value = e.detail.value.replace(/\s+/g, '');
     let pos = e.detail.cursor;
     let url = globalData.search_url;
+    //如果输入框不为空，则根据输入框的值请求并显示搜索结果
     if (value != '') {
-      util.request(url, value, key)
+      let data={
+        'location':value,
+        'key':key
+      }
+      util.request(url,data)
         .then((res) => {
           if (res.HeWeather6[0].status === 'ok') {
             for (let i = 0; i < res.HeWeather6[0].basic.length; i++) {
@@ -38,7 +43,8 @@ Page({
       this.setData({
         showClose: true
       })
-    } else {
+    }//如果输入框为空，则将搜索结果清空
+     else {
       this.setData({
         search_result: [],
         showClose: false
@@ -55,13 +61,6 @@ Page({
     this.setData({
       showSearchPanel: true
     })
-    let value = e.detail.value.replace(/\s+/g, '');
-    console.log('ffdsfdsfsd=' + value);
-    if(!value){
-      this.setData({
-        search_result:[]
-      })
-    }
   },
   toWeatherPage(e) {
     let city = e.currentTarget.dataset.city;
@@ -76,12 +75,14 @@ Page({
       return;
     }
     if (cities) {
+      //如果要搜索的城市已存在
       if (cities.includes(city)) {
         let index = cities.indexOf(city);
         wx.navigateTo({
           url: `/pages/index/index?city=${city}&index=${index}`
         })
-      } else {
+      }//如果要搜索的城市是新的城市 
+      else {
         let index = cities.length;
         wx.navigateTo({
           url: `/pages/index/index?city=${city}&index=${index}`

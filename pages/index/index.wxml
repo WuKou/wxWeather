@@ -44,7 +44,7 @@
       </swiper-item>
       <swiper-item wx:else class="fail-swiper-item">
         <view class="city">{{item.weather.basic.location}}
-          <image class="city-icon" src="/img/location.png"></image>
+          <image class="city-icon" wx:if="{{currentLocation===item.weather.basic.location||'当前位置'===item.weather.basic.location}}" src="/img/location.png"></image>
         </view>
         <view class="text">未更新</view>
       </swiper-item>

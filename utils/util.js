@@ -13,32 +13,29 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-function request(url, location, key){
-  return new Promise((resolve,reject)=>{
+
+function request(url, data) {
+  return new Promise((resolve, reject) => {
     wx.showLoading({
       title: '加载中',
     })
     wx.request({
       url: url,
       method: 'GET',
-      data:{
-        location,
-        key,
-      },
-      success:(res)=>{
-        if(res.statusCode===200){
+      data: data,
+      success: (res) => {
+        if (res.statusCode === 200) {
           resolve(res.data);
-        }
-        else{
+        } else {
           reject("信息查询错误:" + res.statusCode);
           console.log(res.statusCode);
         }
       },
-      fail:(error)=>{
+      fail: (error) => {
         reject(error);
         console.log(error);
       },
-      complete(){
+      complete() {
         wx.hideLoading();
       }
     })
@@ -47,5 +44,5 @@ function request(url, location, key){
 
 module.exports = {
   formatTime: formatTime,
-  request:request
+  request: request
 }
